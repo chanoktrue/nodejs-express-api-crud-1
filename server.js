@@ -1,15 +1,22 @@
 const express = require('express')
+const { readdirSync } = require('fs')
+const morgan = require('morgan')
+const cors = require('cors')
+const connectDB = require('./Config/db')
 
 const app = express()
 const port = 3000
 
+app.use(morgan('dev'))
+app.use(cors())
+app.use(express.json({limit: '10mb'}))
+connectDB()
+
 // const productRouters = require('./Routes/product')
 // const authRouters = require('./Routes/auth')
 
-const { readdirSync } = require('fs')
-
 //Route 1
-// app.get('/product', (req,res) => {
+// app.get('/product', (req,res) => {n
 //     res.send("Hello endpoint")
 // })
 
